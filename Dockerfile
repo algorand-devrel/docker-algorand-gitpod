@@ -4,3 +4,4 @@ RUN pip install -r ./algodeploy/requirements.txt
 
 ARG TAG=stable
 RUN ./algodeploy/algodeploy.py create $TAG
+CMD ["./algodeploy/algodeploy.py", "start"]
