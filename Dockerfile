@@ -8,3 +8,5 @@ RUN pip install -r ./algodeploy/requirements.txt
 
 ARG TAG=stable
 RUN ./algodeploy/algodeploy.py create $TAG
+
+RUN echo "export PATH=$PATH:/home/gitpod/.algodeploy/localnet/bin" >> ~/.bashrc
