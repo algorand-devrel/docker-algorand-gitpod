@@ -1,7 +1,7 @@
 image: joepol/bootcamp-image:test3
 tasks:
   - name: Start algodeploy
-    command: ./algodeploy/algodeploy.py start
+    command: ~/algodeploy/algodeploy.py start
 vscode:
   extensions:
     - ms-python.python
