@@ -3,7 +3,8 @@ tasks:
   - name: Algodeploy
     command: ~/algodeploy/algodeploy.py start
   - name: Indexer
-    init: | 
+    init: |
+      gp ports await 5432
       psql -c 'create database indexer;'
       gp ports await 4001 
       algorand-indexer daemon \
