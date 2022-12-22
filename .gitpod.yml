@@ -3,9 +3,8 @@ tasks:
   - name: Algodeploy
     command: ~/algodeploy/algodeploy.py start
   - name: Indexer
-    init: psql -c 'create database indexer;'
-    command: |
-      sleep 5 && algorand-indexer daemon \
+    init: | 
+      psql -c 'create database indexer;' && sleep 5 && algorand-indexer daemon \
       --loglevel info \
       --postgres "host=localhost port=5432 user=gitpod dbname=indexer sslmode=disable" \
       --algod-net "localhost:4001" \
