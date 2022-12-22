@@ -1,4 +1,4 @@
-image: joepol/bootcamp-image:test5
+image: joepol/bootcamp-image:test6
 tasks:
   - name: Start algodeploy
     command: ~/algodeploy/algodeploy.py start
