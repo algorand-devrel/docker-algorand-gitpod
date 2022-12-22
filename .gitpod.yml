@@ -1,7 +1,17 @@
 image: joepol/bootcamp-image:test8
 tasks:
   - name: Start algodeploy
-    command: ~/algodeploy/algodeploy.py start
+    init: ~/algodeploy/algodeploy.py start
+  - name: Start indexer
+    init: psql -c 'create database indexer;'
+    command: |
+      algorand-indexer daemon \
+      --loglevel info \
+      --postgres "host=localhost port=5432 user=gitpod dbname=indexer sslmode=disable" \
+      --algod-net "localhost:4001" \
+      --algod-token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" \
+      --data-dir ~/.algodeploy/localnet/data/Node \
+      --dev-mode
 vscode:
   extensions:
     - ms-python.python
