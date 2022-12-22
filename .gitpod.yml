@@ -18,9 +18,9 @@ vscode:
   extensions:
     - ms-python.python
 ports:
-  - name: Dappflow
+  - name: dappflow
     port: 3000
-    onOpen: open-browser
+    onOpen: preview
   - name: algod
     port: 4001
     visibility: public
