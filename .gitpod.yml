@@ -28,10 +28,10 @@ ports:
   - name: indexer
     port: 8980
     visibility: public
-    opOpen: ignore
+    onOpen: ignore
   - name: postgres
     port: 5432
-    opOpen: ignore
+    onOpen: ignore
   - name: kmd
     port: 4002
-    opOpen: ignore
+    onOpen: ignore
