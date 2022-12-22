@@ -1,4 +1,4 @@
-image: joepol/bootcamp-image:test9
+image: joepol/bootcamp-image:test10
 tasks:
   - name: Algodeploy
     command: ~/algodeploy/algodeploy.py start
@@ -13,7 +13,7 @@ tasks:
       --data-dir ~/.algodeploy/localnet/data/Node \
       --dev-mode
   - name: Dappflow
-    command: serve -s ~/dappflow/build
+    command: serve -s ~/dappflow/
 vscode:
   extensions:
     - ms-python.python
