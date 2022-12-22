@@ -21,3 +21,17 @@ ports:
   - name: Dappflow
     port: 3000
     onOpen: open-browser
+  - name: algod
+    port: 4001
+    visibility: public
+    onOpen: ignore
+  - name: indexer
+    port: 8980
+    visibility: public
+    opOpen: ignore
+  - name: postgres
+    port: 5432
+    opOpen: ignore
+  - name: kmd
+    port: 4002
+    opOpen: ignore
