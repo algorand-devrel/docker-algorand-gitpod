@@ -40,3 +40,7 @@ ARG TAG=stable
 RUN ./algodeploy/algodeploy.py create $TAG
 RUN echo "export PATH=$PATH:/home/gitpod/.algodeploy/localnet/bin" >> ~/.bashrc
 
+# Build dappflow
+RUN git clone -b gitpod https://github.com/joe-p/dappflow
+RUN cd dappflow && yarn install && yarn build
+RUN yarn global add serve

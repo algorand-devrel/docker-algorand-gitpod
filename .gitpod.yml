@@ -1,8 +1,8 @@
-image: joepol/bootcamp-image:test8
+image: joepol/bootcamp-image:test9
 tasks:
-  - name: Start algodeploy
-    init: ~/algodeploy/algodeploy.py start
-  - name: Start indexer
+  - name: Algodeploy
+    command: ~/algodeploy/algodeploy.py start
+  - name: Indexer
     init: psql -c 'create database indexer;'
     command: |
       sleep 5 && algorand-indexer daemon \
@@ -12,6 +12,12 @@ tasks:
       --algod-token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" \
       --data-dir ~/.algodeploy/localnet/data/Node \
       --dev-mode
+  - name: Dappflow
+    command: serve -s ~/dappflow/build
 vscode:
   extensions:
     - ms-python.python
+ports:
+  - name: Dappflow
+    port: 3000
+    onOpen: open-browser
