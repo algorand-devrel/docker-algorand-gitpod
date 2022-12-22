@@ -20,7 +20,7 @@ vscode:
 ports:
   - name: dappflow
     port: 3000
-    onOpen: preview
+    onOpen: open-preview
   - name: algod
     port: 4001
     visibility: public
