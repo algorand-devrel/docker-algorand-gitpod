@@ -1,8 +1,7 @@
-image: joepol/bootcamp-image:test10
+image: joepol/algorand-gitpod:latest
 tasks:
-  - name: Algodeploy
-    command: ~/algodeploy/algodeploy.py start
-  - name: Indexer
+  - name: Algorand
+    before: ~/algodeploy/algodeploy.py start
     init: |
       gp ports await 5432
       psql -c 'create database indexer;'
@@ -14,7 +13,7 @@ tasks:
       --algod-token "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" \
       --data-dir ~/.algodeploy/localnet/data/Node \
       --dev-mode
-  - name: Dappflow
+  - name: dappflow
     command: serve -s ~/dappflow/
 vscode:
   extensions:
