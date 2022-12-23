@@ -1,4 +1,6 @@
-# Build indexer (based on: https://github.com/joe-p/docker-algorand/blob/master/algorand-indexer/Dockerfile)
+###############
+# Build indexer 
+###############
 FROM golang:1.17.8-bullseye as indexer-builder
 
 RUN apt-get update 
@@ -25,10 +27,20 @@ FROM node:16.19.0-bullseye as dappflow-builder
 
 WORKDIR /workdir
 
+################
 # Build dappflow
-RUN git clone -b gitpod https://github.com/joe-p/dappflow
-RUN cd dappflow && yarn install && yarn build
+################
+ADD https://github.com/joe-p/dappflow/archive/gitpod.tar.gz /tmp/tarball.tar.gz
+RUN tar -xzvf /tmp/tarball.tar.gz -C ./
+RUN mv ./dappflow* ./dappflow
 
+WORKDIR ./dappflow
+
+RUN yarn install && yarn build
+
+########################
+# Build gitpod workspace
+########################
 FROM gitpod/workspace-postgres:2022-12-15-12-38-23 as gitpod-workspace
 COPY --from=indexer-builder /usr/local/src/indexer/cmd/algorand-indexer/algorand-indexer /usr/local/bin/algorand-indexer
 
@@ -40,7 +52,11 @@ RUN pyenv global 3.10.7
 RUN pip install beaker-pyteal
 
 # Install algodeploy
-RUN git clone https://github.com/joe-p/algodeploy.git
+ADD https://github.com/joe-p/algodeploy/archive/master.tar.gz ./tarball.tar.gz
+RUN sudo chown gitpod:gitpod ./tarball.tar.gz
+RUN tar -xzvf ./tarball.tar.gz -C ./
+RUN rm ./tarball.tar.gz 
+RUN mv ./algodeploy* ./algodeploy
 RUN pip install -r ./algodeploy/requirements.txt
 
 # Create network with algodeploy
