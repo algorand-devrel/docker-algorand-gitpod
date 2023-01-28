@@ -1,7 +1,9 @@
 image: joepol/algorand-gitpod:algokit
 tasks:
+  - name: algokit sandbox
+    command: algokit sandbox start
   - name: dappflow
-    command: serve -s ~/dappflow/
+    command: gp ports await 8980 && gp ports await 4001 && serve -s ~/dappflow/
 vscode:
   extensions:
     - ms-python.python
