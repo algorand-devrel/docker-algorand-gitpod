@@ -22,8 +22,15 @@ FROM gitpod/workspace-full:2023-01-16-03-31-28 as gitpod-workspace
 RUN pyenv install -v 3.10.7
 RUN pyenv global 3.10.7
 
+# Setup poetry
+RUN poetry config virtualenvs.prefer-active-python true
+
 # Install pipx
 RUN pip install pipx
 
 # Install algokit
 RUN pipx install algokit
+
+# Copy over dappflow
+COPY --from=dappflow-builder /workdir/dappflow/build /home/gitpod/dappflow
+RUN npm i -g serve
