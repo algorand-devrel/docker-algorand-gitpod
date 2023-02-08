@@ -48,8 +48,9 @@ COPY --from=indexer-builder /usr/local/src/indexer/cmd/algorand-indexer/algorand
 RUN pyenv install -v 3.10.7
 RUN pyenv global 3.10.7
 
-# Install beaker
-RUN pip install beaker-pyteal
+# Install beaker/SDK
+COPY ./requirements.txt ./requirements.txt
+RUN pip install -r ./requirements.txt
 
 # Install algodeploy
 ADD https://github.com/joe-p/algodeploy/archive/master.tar.gz ./tarball.tar.gz
