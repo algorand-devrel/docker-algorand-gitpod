@@ -34,7 +34,7 @@ ADD https://github.com/joe-p/dappflow/archive/gitpod.tar.gz /tmp/tarball.tar.gz
 RUN tar -xzvf /tmp/tarball.tar.gz -C ./
 RUN mv ./dappflow* ./dappflow
 
-WORKDIR ./dappflow
+WORKDIR /workdir/dappflow
 
 RUN yarn install && yarn build
 
